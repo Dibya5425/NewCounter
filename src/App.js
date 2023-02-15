@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    if (count < 10) {
+      setCount(count + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
+  const getCounterColor = () => {
+    if (count >= 0 && count <= 4) {
+      return 'green';
+    } else if (count >= 5 && count <= 9) {
+      return 'blue';
+    } else {
+      return 'red';
+    }
+  };
+
   return (
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='counter'>
+        <h1 className='number' style={{ color: getCounterColor() }}>{count}</h1>
+        <button className='IncrementBtn' onClick={handleIncrement}>+</button>
+        <button onClick={handleDecrement}>-</button>
+      </div>
+      <div className='copyright'>
+        <h3 className='name'>Made by- DIBYA JYOTI BARIK, 12013346</h3>
+      </div>
     </div>
+    
   );
 }
 
